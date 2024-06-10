@@ -5,24 +5,30 @@ import (
 	"math"
 )
 
+const inflationRate = 2.5
+
 func main() {
 
-	const inflationRate = 2.5
 	var investmentAmount float64
 	var years float64
 	expectedReturnRate := 5.5
 
-	fmt.Print("Investment Amount: ")
+	// fmt.Print("Investment Amount: ")
+	outputText("Investment Amount: ")
 	fmt.Scan(&investmentAmount)
 
-	fmt.Print("Expected Return Rate: ")
+	// fmt.Print("Expected Return Rate: ")
+	outputText("Expected Return Rate: ")
 	fmt.Scan(&expectedReturnRate)
 
-	fmt.Print("Years: ")
+	// fmt.Print("Years: ")
+	outputText("Years: ")
 	fmt.Scan(&years)
 
-	futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
-	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+	// futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
+	// futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+
+	futureValue, futureRealValue := calculateFutureValues(investmentAmount, expectedReturnRate, years)
 
 	// Formating strings - basic
 
@@ -36,14 +42,24 @@ func main() {
 
 	// Creating strings
 
-	// formattedFV := fmt.Sprintf("Future Value: %.2f\n", futureValue)
-	// formattedRFV := fmt.Sprintf("Future Value (adjusted for Inflation): %.2f\n", futureRealValue)
+	formattedFV := fmt.Sprintf("Future Value: %.2f\n", futureValue)
+	formattedRFV := fmt.Sprintf("Future Value (adjusted for Inflation): %.2f\n", futureRealValue)
 
-	// fmt.Print(formattedFV, formattedRFV)
+	fmt.Print(formattedFV, formattedRFV)
 
 	// Building multiline strings
 
-	fmt.Printf(`Future Value: %.2f
-	Future Value (adjusted for Inflation): %.2f`, futureValue, futureRealValue)
+	// fmt.Printf(`Future Value: %.2f
+	// Future Value (adjusted for Inflation): %.2f`, futureValue, futureRealValue)
 
+}
+
+func outputText(text string) {
+	fmt.Print(text)
+}
+
+func calculateFutureValues(investmentAmount, expectedReturnRate, years float64) (float64, float64) {
+	fv := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
+	rfv := fv / math.Pow(1+inflationRate/100, years)
+	return fv, rfv
 }
