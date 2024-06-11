@@ -1,3 +1,3 @@
-module example.com/note
+module example.com/generics
 
 go 1.22.4
