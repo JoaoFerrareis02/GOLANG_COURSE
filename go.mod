@@ -1,3 +1,3 @@
-module example.com/exercise-arrays-and-slices
+module example.com/arrays-slices-maps
 
 go 1.22.4
