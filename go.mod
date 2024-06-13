@@ -1,3 +1,3 @@
-module example.com/functions
+module example.com/concurrency
 
 go 1.22.4
